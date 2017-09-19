@@ -30,9 +30,20 @@
 	         context.clearRect(0,0,800,800);
 	        
 		     context.beginPath();
-		     context.lineWidth=3;
-		     context.strokeStyle="blue";
+		     context.save();
+		     context.lineWidth=20;
+		     context.strokeStyle="orange";
 		     context.arc(400,400,390,0,Math.PI*2);
+		     context.fillStyle="whitesmoke";
+		     context.fill();
+		     context.stroke();
+			 context.beginPath();
+			 context.restore();
+			 
+			 context.beginPath();
+		     context.lineWidth=5;
+		     context.strokeStyle="gainsboro";
+		     context.arc(400,400,365,0,Math.PI*2);
 		     context.stroke();
 			 context.beginPath();
 			
@@ -46,7 +57,7 @@
 				}else{
 					var  r=5;
 				}
-				context.arc(Math.cos(Math.PI/180*6*i)*370,Math.sin(Math.PI/180*6*i)*370,r,0,Math.PI*2);
+				context.arc(Math.cos(Math.PI/180*6*i)*350,Math.sin(Math.PI/180*6*i)*350,r,0,Math.PI*2);
 				context.fill();
 				context.restore();
 				context.closePath();
@@ -57,7 +68,8 @@
 			context.translate(400,400);
 			context.rotate(Math.PI/180*s*6);
 			context.lineTo(0,40);
-			context.lineTo(0,-350);
+			context.lineTo(0,-330);
+			context.lineCap="round";
 			context.lineWidth=5;
 			context.strokeStyle="#FF0000";
 			context.stroke();
@@ -68,7 +80,8 @@
 			context.translate(400,400);
 			context.rotate(Math.PI/180*m*6+Math.PI/180*6/60*s);
 			context.lineTo(0,40);
-			context.lineTo(0,-330);
+			context.lineTo(0,-310);
+			context.lineCap="round";
 			context.lineWidth=15;
 			context.strokeStyle="gray";
 			context.stroke();
@@ -79,7 +92,8 @@
 			context.translate(400,400);
 			context.rotate(h*30*Math.PI/180+Math.PI/180*30/60*m);
 			context.lineTo(0,40);
-			context.lineTo(0,-300);
+			context.lineTo(0,-290);
+			context.lineCap="round";
 			context.lineWidth=20;
 			context.strokeStyle="coral";
 			context.stroke();
