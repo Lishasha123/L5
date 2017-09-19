@@ -20,51 +20,80 @@
 			canvas.width = 800;
 			canvas.height = 800;
 			var context = canvas.getContext("2d");
-		     context.translate(400,400);
+
+			setTime();
+			
+			function setTime(){
+			var s=new Date().getSeconds();
+			var m=new Date().getMinutes();
+			var h=new Date().getHours();
+	         context.clearRect(0,0,800,800);
+	        
 		     context.beginPath();
 		     context.lineWidth=3;
 		     context.strokeStyle="blue";
-		     context.arc(0,0,390,0,Math.PI*2);
+		     context.arc(400,400,390,0,Math.PI*2);
 		     context.stroke();
+			 context.beginPath();
 			
-			context.beginPath();
 			for(var i=0;i<60;i++){
 				context.beginPath();
+				context.save();
+				context.translate(400,400);
 				if(i%5==0){
 					var r=10;
+					context.fillStyle="peru";
 				}else{
 					var  r=5;
 				}
 				context.arc(Math.cos(Math.PI/180*6*i)*370,Math.sin(Math.PI/180*6*i)*370,r,0,Math.PI*2);
 				context.fill();
+				context.restore();
 				context.closePath();
 			};
-			
-			s=new Date().getSeconds();
+			//秒针
 			context.beginPath();
 			context.save();
+			context.translate(400,400);
 			context.rotate(Math.PI/180*s*6);
-			context.lineTo(0,30);
+			context.lineTo(0,40);
 			context.lineTo(0,-350);
 			context.lineWidth=5;
 			context.strokeStyle="#FF0000";
 			context.stroke();
-			context.restore();
-			
-			m=new Date().getMinutes();
+			context.restore();			
+		  //时针
 			context.beginPath();
 			context.save();
-			context.rotate(Math.PI/180*s*6);
-			context.lineTo(0,30);
-			context.lineTo(0,-350);
-			context.lineWidth=10;
-			context.strokeStyle="#FF0000";
+			context.translate(400,400);
+			context.rotate(Math.PI/180*m*6+Math.PI/180*6/60*s);
+			context.lineTo(0,40);
+			context.lineTo(0,-330);
+			context.lineWidth=15;
+			context.strokeStyle="gray";
 			context.stroke();
 			context.restore();
-			
+		//小时
 			context.beginPath();
-			context.arc(0,0,20,0,Math.PI*2);
+			context.save();
+			context.translate(400,400);
+			context.rotate(h*30*Math.PI/180+Math.PI/180*30/60*m);
+			context.lineTo(0,40);
+			context.lineTo(0,-300);
+			context.lineWidth=20;
+			context.strokeStyle="coral";
+			context.stroke();
+			context.restore();
+		//中心圆	
+			context.beginPath();
+			context.save();
+			context.translate(400,400);
+			context.arc(0,0,30,0,Math.PI*2);
+			context.fillStyle="sandybrown";
 			context.fill();
+			context.restore();
+			};
+			setInterval(setTime,1000);
 		</script>
 	</body>
 </html>
