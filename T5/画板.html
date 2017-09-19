@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#canvas{
+				width: 800px;
+				height: 600px;
+				border: solid 1px black;
+				
+			}
+			.w{
+				width: 800px;
+				height: 600px;
+				margin: 0px auto;
+				position: relative;
+			}
+			.box{
+				width: 300px;
+				height: 30px;
+			}
+		   .box2{
+		   	width: 20px;
+		   	height: 20px;
+		   	border: solid 1px red;
+		   	position:absolute;
+		   	top:0px;
+		   	left:0px;
+		   	display: none;
+		   }
+		</style>
+	</head>
+	<body>
+		<div class="w">
+		<canvas id="canvas" width="800" height="800"></canvas>
+		<div class="box2"></div>
+		</div>
+		<div class="box">
+		<span>1</span>
+		<input type="range" name="range" id="range" max="20" value="1" />
+		<span>20</span>
+		<input type="color" name="color" id="color" value="" />	
+		<input type="radio" name="pen" class="pen" value="0"  checked="checked" /> 
+		<input type="radio" name="pen" class="pen" value="1" />
+		</div>
+		
+		<script type="text/javascript">
+			var canvas = document.getElementById("canvas");
+			var range=document.getElementById("range");
+			var color=document.getElementById("color");
+			var pen=document.getElementsByClassName("pen");
+			var box2=document.getElementsByClassName("box2")[0];
+			var earser = false;
+			canvas.width = 800;
+			canvas.height = 600;
+			var context = canvas.getContext("2d");
+			var draw=false;
+			  canvas.onmousedown=function(e){
+			  	 draw=true;
+			  	context.beginPath();
+			  };
+			canvas.onmouseup=function(e){
+				draw=false;
+				context.closePath();
+			};
+			box2.onmousedown=function(e){
+			  	 draw=true;
+			  	context.beginPath();
+			  };
+			box2.onmouseup=function(e){
+				draw=false;
+				context.closePath();
+			};
+			canvas.onmousemove=function(e){
+				if(draw){
+					var x=e.pageX-this.offsetLeft;
+					var y=e.pageY-this.offsetTop;
+					context.lineTo(x,y);
+					context.stroke();
+				}
+				if(earser){
+					var x=e.pageX-this.offsetLeft;
+					var y=e.pageY-this.offsetTop;
+					box2.style.left=x-10+"px";
+					box2.style.top=y-10+"px";
+				}
+			};
+			range.onchange=function(){
+				context.lineWidth=this.value;
+			};
+			color.onchange=function(){
+				context.strokeStyle=this.value;
+			};
+			for(var i=0;i<pen.length;i++){
+			pen[i].onchange=function(e){
+				if(this.value==0){
+					earser=false;
+					box2.style.display="none";
+					context.lineWidth=range.value;
+					context.strokeStyle=color.value;
+				}else{
+					earser=true;
+					box2.style.display="block";
+					context.lineWidth=20;
+					context.strokeStyle="white";
+				
+				}
+			}
+		}
+			
+//			box1.onclick=function(e){
+//				context.clearRect(0,0,800,600);
+//			};
+		</script>
+	</body>
+</html>

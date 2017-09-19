@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#canvas{
+				width: 400px;
+				height: 400px;
+				border: solid 1px black;
+			}
+			
+			
+		</style>
+	</head>
+	<body>
+		<canvas id="canvas" width="800" height="800"></canvas>
+		<script type="text/javascript">
+			var canvas = document.getElementById("canvas");
+			canvas.width = 800;
+			canvas.height = 800;
+			var context = canvas.getContext("2d");
+			context.lineTo(200,0);
+			context.lineTo(200,800);
+			context.stroke();
+			context.beginPath();
+			context.lineTo(600,0);
+			context.lineTo(600,800);
+			context.stroke();
+			
+			context.lineWidth=20;
+			context.strokeStyle="red";
+			context.beginPath();
+			context.lineCap="round";
+			context.lineTo(200,200);
+			context.lineTo(600,200);
+			context.stroke();
+			
+			context.beginPath();
+			context.lineCap="square";
+			context.lineTo(200,400);
+			context.lineTo(600,400);
+			context.stroke();
+			
+			context.beginPath();
+			context.lineCap="butt";
+			context.lineTo(200,600);
+			context.lineTo(600,600);
+			context.stroke();
+			
+				
+			context.beginPath();
+			context.strokeStyle="aqua";
+//			context.lineJoin="bevel";//平角
+//			context.lineJoin="round";//圆角
+			context.lineJoin="miter";//默认
+			context.miterLimit=10;
+			context.lineTo(800,200);
+			context.lineTo(100,400);
+			context.lineTo(800,600);
+			context.stroke();
+			
+			
+		</script>
+	</body>
+</html>
+

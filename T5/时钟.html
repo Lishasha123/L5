@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#canvas{
+				width: 400px;
+				height: 400px;
+				border: solid 1px black;
+			}
+			
+			
+		</style>
+	</head>
+	<body>
+		<canvas id="canvas" width="800" height="800"></canvas>
+		<script type="text/javascript">
+			var canvas = document.getElementById("canvas");
+			canvas.width = 800;
+			canvas.height = 800;
+			var context = canvas.getContext("2d");
+		     context.translate(400,400);
+		     context.beginPath();
+		     context.lineWidth=3;
+		     context.strokeStyle="blue";
+		     context.arc(0,0,390,0,Math.PI*2);
+		     context.stroke();
+			
+			context.beginPath();
+			for(var i=0;i<60;i++){
+				context.beginPath();
+				if(i%5==0){
+					var r=10;
+				}else{
+					var  r=5;
+				}
+				context.arc(Math.cos(Math.PI/180*6*i)*370,Math.sin(Math.PI/180*6*i)*370,r,0,Math.PI*2);
+				context.fill();
+				context.closePath();
+			};
+			
+			s=new Date().getSeconds();
+			context.beginPath();
+			context.save();
+			context.rotate(Math.PI/180*s*6);
+			context.lineTo(0,30);
+			context.lineTo(0,-350);
+			context.lineWidth=5;
+			context.strokeStyle="#FF0000";
+			context.stroke();
+			context.restore();
+			
+			m=new Date().getMinutes();
+			context.beginPath();
+			context.save();
+			context.rotate(Math.PI/180*s*6);
+			context.lineTo(0,30);
+			context.lineTo(0,-350);
+			context.lineWidth=10;
+			context.strokeStyle="#FF0000";
+			context.stroke();
+			context.restore();
+			
+			context.beginPath();
+			context.arc(0,0,20,0,Math.PI*2);
+			context.fill();
+		</script>
+	</body>
+</html>

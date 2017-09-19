@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#canvas{
+				width: 400px;
+				height: 400px;
+				border: solid 1px black;
+			}
+			
+			
+		</style>
+	</head>
+	<body>
+		<canvas id="canvas" width="800" height="800"></canvas>
+		<script type="text/javascript">
+			var canvas = document.getElementById("canvas");
+			canvas.width = 800;
+			canvas.height = 800;
+			var context = canvas.getContext("2d");
+			context.strokeStyle="red";
+			context.lineWidth=20;
+			context.translate(400,400);
+			
+			context.save();
+			context.scale(0.5,0.5);
+			context.rotate(20*Math.PI/180);
+			context.strokeRect(-200,-200,400,400);
+			
+		    context.restore();
+			context.strokeStyle="gold";
+			context.rotate(20*Math.PI/180);
+			context.strokeRect(-200,-200,400,400);
+			
+		</script>
+	</body>
+</html>
+
